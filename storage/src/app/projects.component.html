@@ -1,0 +1,56 @@
+<h4>Администрирование проектов</h4>
+	<div class="form-inline">
+		<form [formGroup]="projectForm" (ngSubmit)="add(projectForm.value)">
+		  <input style="width:580px" class="form-control"
+		    type="text"
+		    placeholder="Наименование"
+		    name="name"
+		    formControlName="name"/>&nbsp;
+		  <input style="width:240px" class="form-control"
+		    type="text"
+		    placeholder="Сервер"
+		    name="age"
+		    formControlName="age"/>&nbsp;
+		  <button class="btn">Добавить</button>
+		</form>
+	</div>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th hidden>X</th>
+                    <th>Наименование проекта</th>
+                    <th>Сервер проекта</th>
+                    <th>Удалить</th>
+                    <th>В проекте</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let project of projects">
+		<td hidden style="min-width:100px">
+		    <input type="checkbox" (change)="toggle(project)" [checked]="project.complete" />
+		</td>
+		<td style="width:80%">
+		    <span #name contenteditable="true" class="editable" (focusout)="editName(project, name)">
+		      <u *ngIf="project.complete; else uncompleteName">{{ project.name }}</u>
+		      <ng-template #uncompleteName>{{ project.name }}</ng-template>
+		    </span>
+		</td>
+		<td style="min-width:300px">
+		    <span #age contenteditable="true" class="editable" (focusout)="edit(project, age)">
+		      <u *ngIf="project.complete; else uncompleteAge">{{ project.age }}</u>
+		      <ng-template #uncompleteAge>{{ project.age }}</ng-template>
+		    </span>
+		</td>
+		<td style="min-width:170px">
+		    <button class="delete" (click)="delete(project)">Delete</button>
+		</td>
+		<td style="min-width:170px">
+		    <button class="view" (click)="counter.select(project, name)">Users</button>
+		</td>
+                </tr>
+            </tbody>
+        </table>
+
+	<br><span id="userS" style="display:none;"><app-selects #counter>...</app-selects></span>
+

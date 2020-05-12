@@ -1,0 +1,97 @@
+<h4>Список пользователей</h4>
+
+	<div class="form-inline">
+		<form [formGroup]="userForm" (ngSubmit)="add(userForm.value)">
+		  <input style="width:280px" class="form-control" type="text"
+		    placeholder="Фамилия"
+		    name="name" formControlName="name"/>&nbsp;
+		  <input style="width:280px" class="form-control" type="text"
+		    placeholder="Имя"
+		    name="name1" formControlName="name1"/>&nbsp;
+		  <input style="width:280px" class="form-control" type="text"
+		    placeholder="Отчество"
+		    name="name2" formControlName="name2"/>&nbsp;
+		  <input style="width:180px" class="form-control" type="text"
+		    placeholder="Age"
+		    name="age" formControlName="age"/>&nbsp;
+		  <button class="btn">Добавить</button>
+		</form>
+	</div>
+        <br>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+		    <th hidden style="min-width:100px">id</th>
+                    <th hidden style="min-width:100px">X</th>
+                    <th width="30%">Фамилия</th>
+                    <th style="min-width:270px">Имя</th>
+                    <th style="min-width:270px">Отчество</th>
+                    <th style="min-width:180px">Возраст</th>
+                    <th style="min-width:170px">Удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+
+<td hidden>
+    <span #id>{{ user.id }}</span>
+</td>
+
+<td hidden style="min-width:100px">
+    <input type="checkbox" (change)="toggle(user)" [checked]="user.complete" />
+</td>
+<td>
+    <span #name contenteditable="true" class="editable" (focusout)="editName(user, name)">
+      <u *ngIf="user.complete; else uncompleteName">{{ user.name }}</u>
+      <ng-template #uncompleteName>{{ user.name }}</ng-template>
+    </span>
+</td>
+<td>
+    <span #name1 contenteditable="true" class="editable" (focusout)="editName1(user, name1)">
+      <u *ngIf="user.complete; else uncompleteName1">{{ user.name1 }}</u> 
+      <ng-template #uncompleteName1>{{ user.name1 }}</ng-template>
+    </span>
+</td>
+<td>
+    <span #name2 contenteditable="true" class="editable" (focusout)="editName2(user, name2)">
+      <u *ngIf="user.complete; else uncompleteName2">{{ user.name2 }}</u> 
+      <ng-template #uncompleteName2>{{ user.name2 }}</ng-template>
+    </span>
+</td>
+<td style="min-width:200px">
+    <span #age contenteditable="true" class="editable" (focusout)="edit(user, age)">
+      <u *ngIf="user.complete; else uncompleteAge">{{ user.age }}</u>
+      <ng-template #uncompleteAge>{{ user.age }}</ng-template>
+    </span>
+</td>
+<td style="min-width:170px">
+    <button class="delete" (click)="delete(user)">Delete</button>
+</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+
+<!--
+<ul class="user-list">
+  <li *ngFor="let user of users">
+    <input type="checkbox" (change)="toggle(user)" [checked]="user.complete" />
+    <span>
+      <s *ngIf="user.complete; else uncompleteName">{{ user.name }}</s>
+      <ng-template #uncompleteName>{{ user.name }}</ng-template>
+    </span>
+    <span
+      #age
+      contenteditable="true"
+      class="editable"
+      (focusout)="edit(user, age)"
+    >
+      <s *ngIf="user.complete; else uncompleteAge">{{ user.age }}</s>
+      <ng-template #uncompleteAge>{{ user.age }}</ng-template></span
+    >
+    <button class="delete" (click)="delete(user)">Delete</button>
+  </li>
+</ul>
+-->
