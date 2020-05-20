@@ -1,0 +1,15 @@
+<div style="padding-top:10px;">
+                <div style="background:#d8d8f8; padding:20px 0 0 30px; height:40px;" >
+		<a routerLink="/users"
+		   routerLinkActive="active"
+		   [routerLinkActiveOptions]="{exact:true}">
+		   Пользователи
+		</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a routerLink="/projects"
+		   routerLinkActive="active">
+		   Проекты
+		</a>
+		</div>
+	       <hr>
+                    <router-outlet></router-outlet>
+</div>

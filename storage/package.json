@@ -1,8 +1,8 @@
 {
   "name": "storage",
   "version": "1.0.0",
-  "description": "Grid Angular 9 Project",
-  "author": "Eugene Popov metanit.com",
+  "description": "First Test Angular Project",
+  "author": "GitHub/ValeriyBal",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

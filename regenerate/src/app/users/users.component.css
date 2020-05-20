@@ -1,0 +1,12 @@
+
+td {
+	color: #000000;
+}
+
+.editable:focus {
+	color: #ffffff;
+	border: 1px solid black; 	/* Параметры границы */
+	background: #3434dd; 		/* Цвет фона */
+	padding: 3px 37px 3px 2px; 	/* Поля вокруг текста */
+}
+

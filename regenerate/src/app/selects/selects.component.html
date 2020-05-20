@@ -1,0 +1,54 @@
+<hr>
+<h3>Выбор пользователей в проекте: <span style="font-weight: normal; color:#0000a8;"><i>{{counter}}</i></span></h3>
+<p></p>
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="min-width:200px">В проекте</th>
+                    <th width="30%">Фамилия</th>
+                    <th style="min-width:270px">Имя</th>
+                    <th style="min-width:270px">Отчество</th>
+                    <th hidden style="min-width:180px">Возраст</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of selects">
+		<td style="min-width:100px">
+		    <input type="checkbox" (change)="toggle(user)" [checked]="user.complete" />
+		</td>
+		<td>
+		    <span #name>
+		      <u *ngIf="user.complete; else uncompleteName">{{ user.name }}</u>
+		      <ng-template #uncompleteName>{{ user.name }}</ng-template>
+		    </span>
+		</td>
+		<td>
+		    <span #name1>
+		      <u *ngIf="user.complete; else uncompleteName1">{{ user.name1 }}</u> 
+		      <ng-template #uncompleteName1>{{ user.name1 }}</ng-template>
+		    </span>
+		</td>
+		<td>
+		    <span #name2>
+		      <u *ngIf="user.complete; else uncompleteName2">{{ user.name2 }}</u> 
+		      <ng-template #uncompleteName2>{{ user.name2 }}</ng-template>
+		    </span>
+		</td>
+		<td hidden style="min-width:320px">
+		    <span id="counterID" #idPr>{{counterID}}</span>
+		</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+<!--
+    	<select [(ngModel)]="valueDef2" (ngModelChange)="change(valueDef2);">
+				<option [value]=0>&nbsp;&nbsp;---&nbsp;исключить---</option>
+				<option *ngFor="let project of projects" class="wSelect" [value]="project.regnum">
+					[{{project.regnum}}]&nbsp;{{project.nameProject}}
+				</option>
+	</select>
+-->

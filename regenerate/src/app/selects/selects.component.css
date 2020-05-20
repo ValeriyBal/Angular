@@ -1,0 +1,13 @@
+.editable:focus {
+	color: #ffffff;
+	border: 1px solid black; 	/* Параметры границы */
+	background: #3434dd; 		/* Цвет фона */
+	padding: 3px 37px 3px 2px; 	/* Поля вокруг текста */
+}
+
+hr {
+    border: none; 		/* Убираем границу для браузера Firefox */
+    color: #979797; 		/* Цвет линии для остальных браузеров */
+    background-color: #979797; 	/* Цвет линии для браузера Firefox и Opera */
+    height: 1px; 		/* Толщина линии */
+}
