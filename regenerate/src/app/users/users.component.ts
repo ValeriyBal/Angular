@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private dialog: MatDialog,
+    public dialog: MatDialog,
     private formBuilder: FormBuilder
   ) {
     this.userForm = this.formBuilder.group({

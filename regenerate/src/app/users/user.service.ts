@@ -1,7 +1,7 @@
 import { User, UserDto } from "./user.model";
 import { SelectU, SelectUsr } from "../selects/select.model";
 
-import { MatDialog } from '@angular/material/dialog'; 
+//import { MatDialog } from '@angular/material/dialog'; 
 import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 
 export class UserService {
@@ -56,10 +56,11 @@ export class UserService {
 // проверка на наличие пользователя в проектах
     const selectsU: SelectUsr[] = JSON.parse(localStorage.getItem("selects")) || [];
     this.selectsU = selectsU.map(selectU => new SelectU(selectU));
-// можно так фильтр в if: this.selectsU.filter(({ idUser }) => idUser == userID).length
+// можно еще и так фильтр в if: this.selectsU.filter(({ idUser }) => idUser == userID).length
 	if ( this.selectsU.filter(ip => ip.idUser.includes(userID)).length > 0 ) {
 		alert('NO delete !! This user in project now... ');
-//		openDialog();
+// this.dialog.open(DialogExampleComponent);
+// openDialog();
 	} else {
 	        this.users = this.users.filter(({ id }) => id !== userID);
 	        this._commit(this.users);
