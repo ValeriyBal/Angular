@@ -1,7 +1,7 @@
 {
   "version": 1,
   "projects": {
-    "storage": {
+    "storage_bak": {
       "projectType": "application",
       "root": "",
       "sourceRoot": "src",
@@ -9,7 +9,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/storage",
+            "outputPath": "dist/storage_bak",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,13 +28,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "storage:build"
+            "browserTarget": "storage_bak:build"
           }
         }
       }
     }
   },
-  "defaultProject": "storage",
+  "defaultProject": "storage_bak",
   "cli": {
     "analytics": false
   }
