@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/users/user.service';
 
-import { MatDialog } from '@angular/material/dialog'; 
+import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 
 
@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    public dialog: MatDialog,
+
     private formBuilder: FormBuilder
   ) {
     this.userForm = this.formBuilder.group({
@@ -38,12 +38,8 @@ export class UsersComponent implements OnInit {
     this.users = this.userService.users;
   }
 
-  openDialog() {
-    let dialogRef = this.dialog.open(DialogExampleComponent);
-	dialogRef.afterClosed().subscribe(result => {
-		console.log(`Dialog result: ${result}`);
-//		alert(`${result}`);
-	})
+  openDialog(){
+    this.userService.openDialog();
   }
 
   add(userForm) {
