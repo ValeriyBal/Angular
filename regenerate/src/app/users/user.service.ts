@@ -1,17 +1,16 @@
 import { User, UserDto } from "./user.model";
 import { SelectU, SelectUsr } from "../selects/select.model";
 
-//import { MatDialog } from '@angular/material/dialog';
-import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
-import {MatDialog} from "@angular/material/dialog";
-import {Injectable} from "@angular/core";
+import { DialogExampleComponent } from "../dialog-example/dialog-example.component";
+import { MatDialog } from "@angular/material/dialog";
+
+import { Injectable } from "@angular/core";
 
 @Injectable({providedIn: 'root'})
+
 export class UserService {
   public users: User[];
   public selectsU: SelectU[];
-
-//  public dialog: MatDialog;
 
   constructor(public dialog: MatDialog)
   {
@@ -53,10 +52,10 @@ export class UserService {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogExampleComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-//		alert(`${result}`);
-    });
+//    dialogRef.afterClosed().subscribe(result => {
+//      console.log(`Dialog result: ${result}`);
+//	alert(`${result}`);
+//    });
   }
 
   delete(userID: string) {
@@ -65,9 +64,8 @@ export class UserService {
     this.selectsU = selectsU.map(selectU => new SelectU(selectU));
 // можно еще и так фильтр в if: this.selectsU.filter(({ idUser }) => idUser == userID).length
 	if ( this.selectsU.filter(ip => ip.idUser.includes(userID)).length > 0 ) {
-		alert('NO delete !! This user in project now... ');
-// this.dialog.open(DialogExampleComponent);
-// openDialog();
+//		alert('NO delete !! This user in project now... ');
+		this.openDialog();
 	} else {
 	        this.users = this.users.filter(({ id }) => id !== userID);
 	        this._commit(this.users);

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/users/user.service';
 
-import { MatDialog } from '@angular/material/dialog';
-import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
+//import { MatDialog } from '@angular/material/dialog';
+//import { DialogExampleComponent } from '../dialog-example/dialog-example.component';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-
     private formBuilder: FormBuilder
   ) {
     this.userForm = this.formBuilder.group({
