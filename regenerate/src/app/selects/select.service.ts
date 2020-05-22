@@ -50,17 +50,17 @@ export class SelectService {
 
     const selectsU: SelectUsr[] = JSON.parse(localStorage.getItem("selects")) || 
   [
-//    {idProj: '5eb54100', idUser: '5eb54237'},    // тестовые данные
+//    {idProj: '5eb54100', idUser: '5eb54237'},    // С‚РµСЃС‚РѕРІС‹Рµ РґР°РЅРЅС‹Рµ
 //    {idProj: '5eb5413d', idUser: '5eb7f164'},
   ];
     this.selectsU = selectsU.map(selectU => new SelectU(selectU));
 
-// Проставить галочки в selects, пробежавшись по selectsU 
+// РџСЂРѕСЃС‚Р°РІРёС‚СЊ РіР°Р»РѕС‡РєРё РІ selects, РїСЂРѕР±РµР¶Р°РІС€РёСЃСЊ РїРѕ selectsU 
 
 	for (var i = 0; i < this.selects.length; i++) {
 		const id = this.selects[i].id ;
 
-// temporary (верхний фильтр, снесен в if) this.selectsU = this.selectsU.filter(ip => ip.idProj.includes(selectID));
+// temporary (РІРµСЂС…РЅРёР№ С„РёР»СЊС‚СЂ, СЃРЅРµСЃРµРЅ РІ if) this.selectsU = this.selectsU.filter(ip => ip.idProj.includes(selectID));
 
 	    if ( this.selectsU.filter(ip => ip.idProj.includes(selectID)).filter(it => it.idUser.includes(id)).length > 0 ) {
 

@@ -6,7 +6,7 @@ import { MatDialog } from "@angular/material/dialog";
 
 import { Injectable } from "@angular/core";
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: 'root'}) 
 
 export class UserService {
   public users: User[];
@@ -54,7 +54,7 @@ export class UserService {
     const dialogRef = this.dialog.open(DialogExampleComponent);
 //    dialogRef.afterClosed().subscribe(result => {
 //      console.log(`Dialog result: ${result}`);
-//	alert(`${result}`);
+//	alert(`${result}`);		
 //    });
   }
 

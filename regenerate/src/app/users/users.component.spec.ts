@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UsersComponent } from './Users.component';
+import { UsersComponent } from './users.component';
 /*
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -19,11 +19,8 @@ describe('UsersComponent', () => {
     fixture.detectChanges();
   });
 
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });
 */
-

@@ -11,3 +11,12 @@ hr {
     background-color: #979797; 	/* Цвет линии для браузера Firefox и Opera */
     height: 1px; 		/* Толщина линии */
 }
+
+/** For mat-checkbox */
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: #050505;
+}
+  
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: #880022 !important;
+}
