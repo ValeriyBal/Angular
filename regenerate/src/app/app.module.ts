@@ -18,7 +18,7 @@ import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 
-// определение маршрутов
+// РѕРїСЂРµРґРµР»РµРЅРёРµ РјР°СЂС€СЂСѓС‚РѕРІ
 const appRoutes: Routes =[
     { path: '', component: UsersComponent},
     { path: 'projects', component: ProjectsComponent},
