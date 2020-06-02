@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-//  selector: 'app-hello-world',    // заменен на customElements.define('app-hello-world', custom);
+  selector: 'app-hello-world',
   templateUrl: './hello-world.component.html',
   styleUrls: ['./hello-world.component.css']
 })

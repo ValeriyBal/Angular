@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector } from '@angular/core';
-// import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {Injector, NgModule} from '@angular/core';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HelloWorldComponent} from './hello-world/hello-world.component';
 
 import {createCustomElement} from '@angular/elements';
+
+// import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -17,15 +17,19 @@ import {createCustomElement} from '@angular/elements';
     BrowserModule,
     AppRoutingModule
   ],
-  entryComponents: [HelloWorldComponent],
-//  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  entryComponents: [AppComponent],
   providers: [],
-  bootstrap: [AppComponent]
+  // bootstrap: [AppComponent]
 })
 
 export class AppModule {
-  constructor(injector: Injector) {
-    const custom = createCustomElement(HelloWorldComponent, {injector: injector});
-      customElements.define('app-hello-world', custom);
+  constructor(private injector: Injector) {
+  }
+
+  ngDoBootstrap() {
+    const custom = createCustomElement(AppComponent, {injector: this.injector});
+    if (!window.customElements.get('app-element')) {
+      window.customElements.define('app-element', custom);
+    }
   }
 }

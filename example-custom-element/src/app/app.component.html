@@ -1,8 +1,8 @@
 <div>
-  <h1>Test one Angular Elements</h1>   
+  <h1>Test one Angular Elements</h1>
       <button (click)="showMessage()">Display custom element</button>
       <button (click)="HiddenMessage()">Hidden custom element</button>
-      
+
       <div id="hello"></div> <!-- custom element -->
-      
+  <app-hello-world *ngIf="isShown"></app-hello-world>
 </div>

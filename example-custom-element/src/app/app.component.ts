@@ -1,23 +1,21 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-element',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 
 //  title = 'example-custom-element';
+  isShown: any;
 
   showMessage() {
-    const hello = document.getElementById('hello');
-    hello.style.display = 'block';
-    hello.innerHTML = '<app-hello-world></app-hello-world>';
+    this.isShown = true;
   }
 
   HiddenMessage() {
-    const hello = document.getElementById('hello');
-    hello.style.display = 'none';
+    this.isShown = false;
   }
 
 }
