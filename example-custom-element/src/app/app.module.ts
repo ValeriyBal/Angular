@@ -3,10 +3,7 @@ import {Injector, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HelloWorldComponent} from './hello-world/hello-world.component';
-
 import {createCustomElement} from '@angular/elements';
-
-// import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -17,10 +14,12 @@ import {createCustomElement} from '@angular/elements';
     BrowserModule,
     AppRoutingModule
   ],
+//  entryComponents: [HelloWorldComponent],
   entryComponents: [AppComponent],
   providers: [],
-  // bootstrap: [AppComponent]
+//  bootstrap: [AppComponent]
 })
+
 
 export class AppModule {
   constructor(private injector: Injector) {
@@ -33,3 +32,12 @@ export class AppModule {
     }
   }
 }
+
+/*
+export class AppModule {
+  constructor(injector: Injector) {
+    const custom = createCustomElement(HelloWorldComponent, {injector: injector});
+      customElements.define('app-hello-world', custom);
+  }
+}
+*/
