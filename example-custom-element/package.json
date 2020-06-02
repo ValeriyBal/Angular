@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-hashing=none",
+    "build:prod": "ng build --prod --output-hashing=none",
     "package": "cat dist/elements-demo/{runtime,polyfills,scripts,main}.js | gzip > elements.js.gz",
     "serve": "http-server --gzip",
     "test": "ng test",
