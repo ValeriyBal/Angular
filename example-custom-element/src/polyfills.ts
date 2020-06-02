@@ -66,4 +66,5 @@ import 'document-register-element';
 /*  https://blog.bitsrc.io/using-angular-elements-why-and-how-part-1-35f7fd4f0457 
 *   Using Angular Elements  
 */
-import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
+/* import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'; */
+
