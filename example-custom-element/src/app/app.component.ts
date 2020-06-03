@@ -23,6 +23,7 @@ export class AppComponent {
     hello.style.display = 'block';
     hello.innerHTML = '<app-hello-world></app-hello-world>';
   }
+
   HiddenMessageBak() {
     const hello = document.getElementById('hello');
     hello.style.display = 'none';
