@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="chrome://ITC_Spinner_Screen/skin/ITC_Spinner_Screen.css" type="text/css"?>
+<!DOCTYPE window[
+	<!ENTITY % dtd1 SYSTEM "chrome://ITC_Spinner_Screen/locale/ITC_Spinner_Screen.dtd" > %dtd1;
+]>
+<!--
+			Код шаблона экрана создан CASE-средством
+		            по имевшемуся описанию шаблона экрана.
+ Шаблон экрана предназначен:
+Экран вертушки для подписи документов
+		Пояснение к версии:
+	Экран вертушки для подписи документов
+
+				Выгрузку произвел: VBalabay  в момент:	05/06/2020 00:00:00
+-->
+<?xul-overlay href="chrome://bfe/content/bfe-jscripts.xul"?>
+<window 
+	project="458"
+	id="ITC_Spinner_Screen"
+	cardsVersions="
+		ITC_PaymentsList_Get=9.0;
+		ITC_PaymentsList_Receive=9.0;
+		ITC_Quartz_CreatePayments_Get=9.0;
+		ITC_Quartz_CreatePayments_Receive=9.0;
+		ITC_Quartz_Identification_Get=9.0;
+		ITC_Quartz_Identification_Receive=9.0;
+		ITC_Quartz_Pay_Ask=9.0;
+		ITC_Quartz_Pay_Ret=9.0;
+		ITC_Quartz_Pay2600_Ask=9.0;
+		ITC_Quartz_Pay2600_Ret=9.0;
+		ITC_Quartz_Pay2900_Ask=9.0;
+		ITC_Quartz_Pay2900_Ret=9.0;
+		ITC_QuartzTime_Get=9.0;
+		ITC_QuartzTime_Receive=9.0;
+		ITC_SignPaymentsSave_Get=9.0;
+		ITC_SignPaymentsSave_Receive=9.0"
+	title="&ITC_Spinner_Screen.title;"
+	version="1.0"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xid="local=setsysvalues;"
+	onload="onPatternLoad('ITC_Spinner_Screen');processActionAlways(gEBI('ITC_Spinner_Screen'))">
+<vbox style="overflow: auto" flex="1">
+<groupbox style="" id="GrCicle" flex="0" >
+<html:table align="left" style="width: 100.00000000000%;" border="0" cellpadding="0" cellspacing="0">
+	<html:tbody>
+		<html:tr align="center" height="1" >
+		<html:td width="476" />
+		<html:td width="196" />
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+				<label value=""/>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+				<label value=""/>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<button
+				id="Button_start"
+				height="40"
+				label="&Button_start.label;"
+				saf_disabled="Button_start, Button_One"
+				saf_enabled="Button_Stop"
+				style="font-weight: bold;"
+				tooltiptext="Запуск періодичного циклу підпису готових документів"
+				width="3000"
+				oncommand="set_associated_fields(this);gEBI('CancelFlag').value = 2;processActionAlways(gEBI('SignPsevdo'))">
+			</button>
+			</html:td>
+			<html:td  align="center"  valign="middle"  rowspan="6" colspan="1" 
+ >
+			<image
+				id="ImgWait"
+				height="250"
+				hidden="true"
+				src="chrome://bfe/skin/itc-list.gif"
+				width="150"
+>
+			</image>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<button
+				id="Button_Stop"
+				disabled="true"
+				height="40"
+				label="&Button_Stop.label;"
+				saf_disabled="Button_Stop"
+				saf_enabled="Button_start, Button_One"
+				saf_hidden="ImgWait"
+				style="font-weight: bold;"
+				tooltiptext="STOP"
+				width="3000"
+				oncommand="set_associated_fields(this);gEBI('CancelFlag').value = 0">
+			</button>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+				<label value=""/>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+				<label value=""/>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<button
+				id="Button_One"
+				label="&Button_One.label;"
+				style="font-weight: bold;"
+				tooltiptext="Разово знайти і підписати готові документи"
+				width="3000"
+				oncommand="gEBI('CancelFlag').value = 1;processActionAlways(gEBI('SignPsevdo'))">
+			</button>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<label
+				id="Label_space"
+				style="height:110px;padding-top:90px;color:#989898;"
+				tooltiptext="Пошук документів на підпис відбувався"
+				value="&Label_space.value;"
+				xid="in=ITC_QuartzTime_Receive.LocalDateTime;">
+			</label>
+			</html:td>
+
+		</html:tr>
+	  </html:tbody>
+</html:table>
+</groupbox>
+<groupbox style="" id="GrTime" flex="0" >
+<html:table align="left" style="width: 100.00000000000%;" border="0" cellpadding="0" cellspacing="0">
+	<html:tbody>
+		<html:tr align="center" height="1" >
+		<html:td width="77" />
+		<html:td width="511" />
+		<html:td width="28" />
+		<html:td width="28" />
+		<html:td width="28" />
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<label
+				id="LSpinner_Stat"
+				value="&LSpinner_Stat.value;"
+>
+			</label>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="DateTime_Spinner_Stat"
+				readonly="true"
+				width="3000"
+				xid="in=ITC_QuartzTime_Receive.DateTime_Spinner_Stat;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="PSum01"
+				hidden="true"
+				minwidth="50"
+				readonly="true"
+				tooltiptext="Скільки хвилин пройшло від запуску S"
+				xid="in=ITC_QuartzTime_Receive.PartialSum01;"
+				onsetvalue="if(gEBI('PSum01').value>30) {gEBI('Img01').image='chrome://bfe/skin/flag_red.png';} else {gEBI('Img01').image='chrome://bfe/skin/flag_green.png';}">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<toolbarbutton
+				id="Img01"
+				disabled="true"
+				image="chrome://bfe/skin/flag_gold.png"
+				tooltiptext="Запуск Quartz здійснюється через службу підтримки"
+				xid="action=ITC_Quartz_Identification_Get;local=setsysvalues;"
+				oncommand="processActionAlways(this)">
+			</toolbarbutton>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+				<label value=""/>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<label
+				id="LSpinner_Pay"
+				value="&LSpinner_Pay.value;"
+>
+			</label>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="DateTime_Spinner_Pay"
+				readonly="true"
+				width="3000"
+				xid="in=ITC_QuartzTime_Receive.DateTime_Spinner_Pay;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="PSum02"
+				hidden="true"
+				minwidth="50"
+				readonly="true"
+				tooltiptext="Скільки хвилин пройшло від запуску P"
+				xid="in=ITC_QuartzTime_Receive.PartialSum02;"
+				onsetvalue="if(gEBI('PSum02').value>30) {gEBI('Img02').image='chrome://bfe/skin/flag_red.png';} else {gEBI('Img02').image='chrome://bfe/skin/flag_green.png';}">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<toolbarbutton
+				id="Img02"
+				disabled="true"
+				image="chrome://bfe/skin/flag_gold.png"
+				tooltiptext="Запуск Quartz здійснюється через службу підтримки"
+				xid="action=ITC_Quartz_CreatePayments_Get;local=setsysvalues;"
+				oncommand="processActionAlways(this)">
+			</toolbarbutton>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<toolbarbutton
+				id="Img03_3"
+				hidden="true"
+				image="chrome://bfe/skin/flag_blue.png"
+				tooltiptext="ITC_Quartz_Pay2900_Ask"
+				xid="action=ITC_Quartz_Pay2900_Ask;local=setsysvalues;"
+				oncommand="processActionAlways(this)">
+			</toolbarbutton>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<label
+				id="LSpinner_Final"
+				value="&LSpinner_Final.value;"
+>
+			</label>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="DateTime_Spinner_Final"
+				readonly="true"
+				width="3000"
+				xid="in=ITC_QuartzTime_Receive.DateTime_Spinner_Final;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="PSum03"
+				hidden="true"
+				minwidth="50"
+				readonly="true"
+				tooltiptext="Скільки хвилин пройшло від запуску F"
+				xid="in=ITC_QuartzTime_Receive.PartialSum03;"
+				onsetvalue="if(gEBI('PSum03').value>30) {gEBI('Img03').image='chrome://bfe/skin/flag_red.png';} else {gEBI('Img03').image='chrome://bfe/skin/flag_green.png';}">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<toolbarbutton
+				id="Img03"
+				disabled="true"
+				image="chrome://bfe/skin/flag_gold.png"
+				tooltiptext="Запуск Quartz здійснюється через службу підтримки"
+				xid="action=ITC_Quartz_Pay_Ask;local=setsysvalues;"
+				oncommand="processActionAlways(this)">
+			</toolbarbutton>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<toolbarbutton
+				id="Img03_2"
+				hidden="true"
+				image="chrome://bfe/skin/flag_blue.png"
+				tooltiptext="ITC_Quartz_Pay2600_Ask"
+				xid="action=ITC_Quartz_Pay2600_Ask;local=setsysvalues;"
+				oncommand="processActionAlways(this)">
+			</toolbarbutton>
+			</html:td>
+
+		</html:tr>
+	  </html:tbody>
+</html:table>
+</groupbox>
+<groupbox style="" id="GrHidden" flex="0" hidden="true" >
+<html:table align="left" style="width: 100.00000000000%;" border="0" cellpadding="0" cellspacing="0">
+	<html:tbody>
+		<html:tr align="center" height="1" >
+		<html:td width="168" />
+		<html:td width="168" />
+		<html:td width="168" />
+		<html:td width="168" />
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="LocalDateTime"
+				requiredElForSend="LocalDateTime"
+				xid="action=ITC_QuartzTime_Get;out=ITC_Quartz_CreatePayments_Get.LocalDateTime, ITC_Quartz_Identification_Get.LocalDateTime, ITC_Quartz_Pay_Ask.BankDate, ITC_Quartz_Pay2600_Ask.LocalDateTime, ITC_Quartz_Pay2900_Ask.LocalDateTime, ITC_QuartzTime_Get.LocalDateTime;sysin=system_moment;"
+				onsetvalue="processActionAlways(this)">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="TimeOut"
+				tooltiptext="пауза в cекундах; отрицательное - НЕ выполнять"
+				value="&TimeOut.value;"
+>
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="SignPsevdo"
+				value="&SignPsevdo.value;"
+				xid="signature=Payment_Sign;signature_params=Payment_Sign.string;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="After_SignPsevdo"
+				saf_clear="PaymentsList"
+				saf_hidden="ImgWait"
+				xid="action=ITC_PaymentsList_Get;clear_in_fields=ITC_PaymentsList_Receive, ITC_SignPaymentsSave_Receive.FlagActionOK;local=setsysvalues;signature_result=Payment_Sign.value;"
+				onsetvalue="set_associated_fields(this);processActionAlways(this)">
+			</textbox>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="UserCode"
+				xid="out=ITC_PaymentsList_Get.UserCode;sysin=user_not_update;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="CancelFlag"
+				tooltiptext="0 - прервать"
+				value="&CancelFlag.value;"
+				xid="out=ITC_PaymentsList_Get.CancelFlag;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="spinner_process"
+				saf_unhidden="ImgWait"
+				tooltiptext="required НЕ ставить!! должно срабатывать при любом in"
+				xid="in=ITC_PaymentsList_Receive.PaymentIdentity;"
+				onsetvalue="if(gEBI('CancelFlag').value > 1) {set_associated_fields(this)};if(this.value=='') { if (gEBI('CancelFlag').value > 1) {processActionAlwaysDelay('SignPsevdo', gEBI('TimeOut').value*1000)} else {gEBI('CancelFlag').value = 0} };if(this.value=='') {gEBI('EmptyList').value = 0} else {gEBI('EmptyList').value = 1; set_associated_fields(this);}">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="acsk_sign_process"
+				requiredElForSend="acsk_sign_process"
+				tooltiptext="запуск накладання підпису АЦСК"
+				xid="in=ITC_PaymentsList_Receive.SignString;"
+				onsetvalue="processActionAlways(gEBI('PaymentsList'))">
+			</textbox>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="BranchCode"
+				xid="out=ITC_PaymentsList_Get.BranchCode;sysin=branch;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="FlagActionOK"
+				readonly="true"
+				requiredElForSend="FlagActionOK"
+				saf_unhidden="ImgWait"
+				tooltiptext="OK / BAD / empty / START"
+				value="&FlagActionOK.value;"
+				xid="in=ITC_SignPaymentsSave_Receive.FlagActionOK;"
+				onsetvalue="if (gEBI('CancelFlag').value > 1) {set_associated_fields(this)};if (gEBI('EmptyList').value > 0) {processActionAlways('SignPsevdo')}">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="ConfirmFlag"
+				readonly="true"
+				xid="in=ITC_Quartz_CreatePayments_Receive.ConfirmFlag, ITC_Quartz_Identification_Receive.ConfirmFlag, ITC_Quartz_Pay_Ret.ConfirmFlag, ITC_Quartz_Pay2600_Ret.ConfirmFlag, ITC_Quartz_Pay2900_Ret.ConfirmFlag;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="acsk_sign_schema"
+				tooltiptext="схема наложения подписи АЦСК"
+				value="&acsk_sign_schema.value;"
+				xid="signature=ACSK_Signature;signature_params=ACSK_Signature.schema;">
+			</textbox>
+			</html:td>
+		</html:tr>
+		<html:tr>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="SystemCode"
+				value="&SystemCode.value;"
+				xid="out=ITC_Quartz_Pay_Ask.SystemCode;">
+			</textbox>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+				<label value=""/>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+				<label value=""/>
+			</html:td>
+			<html:td  align="left"  valign="middle"  rowspan="1" colspan="1" 
+ >
+			<textbox
+				id="EmptyList"
+				tooltiptext="0 - приходил пустой список; 1 - был приход не пустого и ушли подписывать"
+				value="&EmptyList.value;"
+>
+			</textbox>
+			</html:td>
+
+		</html:tr>
+	  </html:tbody>
+</html:table>
+</groupbox>
+<groupbox style="height:200px;" id="GrPayments" flex="0" hidden="true" >
+	<tree
+	id="PaymentsList"
+	enableColumnDrag="true"
+	flex="1"
+	hidecolumnpicker="false"
+	processtype="allrows"
+	seltype="single"
+	xid="action=ITC_SignPaymentsSave_Get;in=ITC_PaymentsList_Receive;outmore=ITC_SignPaymentsSave_Get;signature=ACSK_Signature;">
+		<treecols>
+			<splitter class="tree-splitter" />
+			<treecol  
+				id="SessionID_tree"
+				label="&PaymentsList.SessionID_tree.label;"
+				width="70"
+				xid="in=ITC_PaymentsList_Receive.SessionID;outmore=ITC_SignPaymentsSave_Get.SessionID;"
+				onclick="sort(this)"				 />
+			<splitter class="tree-splitter" />
+			<treecol  
+				id="PaymentIdentity_tree"
+				label="&PaymentsList.PaymentIdentity_tree.label;"
+				width="120"
+				xid="in=ITC_PaymentsList_Receive.PaymentIdentity;outmore=ITC_SignPaymentsSave_Get.PaymentIdentity;"
+				onclick="sort(this)"				 />
+			<splitter class="tree-splitter" />
+			<treecol  
+				id="PaymentNumber_tree"
+				label="&PaymentsList.PaymentNumber_tree.label;"
+				width="100"
+				xid="in=ITC_PaymentsList_Receive.PaymentNumber;outmore=ITC_SignPaymentsSave_Get.PaymentNumber;"
+				onclick="sort(this)"				 />
+			<splitter class="tree-splitter" />
+			<treecol  
+				flex="1"
+				id="SignString_tree"
+				label="&PaymentsList.SignString_tree.label;"
+				minwidth="200"
+				width="240"
+				xid="in=ITC_PaymentsList_Receive.SignString;signature_params=ACSK_Signature.base64;"
+				onclick="sort(this)"				 />
+			<splitter class="tree-splitter" />
+			<treecol  
+				id="PaymentSignAuthor_tree"
+				label="&PaymentsList.PaymentSignAuthor_tree.label;"
+				width="270"
+				xid="outmore=ITC_SignPaymentsSave_Get.PaymentSignAuthor;signature_result=ACSK_Signature.value;"
+				onclick="sort(this)"				 />
+			<splitter class="tree-splitter" />
+			<treecol  
+				id="PaymentSignFormat_tree"
+				label="&PaymentsList.PaymentSignFormat_tree.label;"
+				width="200"
+				xid="in=ITC_PaymentsList_Receive.PaymentSignFormat;outmore=ITC_SignPaymentsSave_Get.PaymentSignFormat;"
+				onclick="sort(this)"				 />
+			<splitter class="tree-splitter" />
+			<treecol  
+				id="UserCode_tree"
+				label="&PaymentsList.UserCode_tree.label;"
+				tooltiptext="из PaymentList_Recive - кто запрашивал"
+				width="80"
+				xid="in=ITC_PaymentsList_Receive.UserCode;outmore=ITC_SignPaymentsSave_Get.UserCode;"
+				onclick="sort(this)"				 />
+			<splitter class="tree-splitter" />
+			<treecol  
+				id="BranchCode_tree"
+				label="&PaymentsList.BranchCode_tree.label;"
+				width="80"
+				xid="in=ITC_PaymentsList_Receive.BranchCode;outmore=ITC_SignPaymentsSave_Get.BranchCode;"
+				onclick="sort(this)"				 />
+			<splitter class="tree-splitter" />
+			<treecol  
+				id="NextPaymentStatus_tree"
+				label="&PaymentsList.NextPaymentStatus_tree.label;"
+				width="50"
+				xid="in=ITC_PaymentsList_Receive.NextPaymentStatus;outmore=ITC_SignPaymentsSave_Get.NextPaymentStatus;"
+				onclick="sort(this)"				 />
+		</treecols>
+		<treechildren />
+	</tree>
+</groupbox>
+</vbox>
+</window>
